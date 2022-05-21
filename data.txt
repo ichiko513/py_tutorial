@@ -1,0 +1,450 @@
+contextmenu
+
+.slide:nth-child
+  left
+  transform: translateX
+  background: transparent;
+  border-color: transparent;
+  font-size: 1.75rem;
+  cursor: pointer;
+  margin: 0 0.25rem;
+  text-transform: capitalize;
+  letter-spacing: 2px;
+  color: var(--clr-grey-5);
+  transition: var(--transition);
+
+    const id = new Date().getTime().toString();
+    return localStorage.getItem('list')? JSON.parse(localStorage.getItem('list')) :[];
+  const value = parseInt( amount.value );
+    const element = document.createElement('article');
+    // add class 
+    element.classList.add('grocery-item');
+    // add id
+    const attr = document.createAttribute('data-id');
+    attr.value = id;
+    element.setAttributeNode(attr);
+    list.appendChild(element);
+    editElement = e.currentTarget.parentElement.previousElementSibling;
+
+console.log( e.currentTarget.dataset['id']);
+<button class="
+filter-btn" type="button" data-id="all">all</button>
+      <video class="video-container" controls muted autoplay loop>
+        <source src=
+ type="video/mp4">
+        video.pause();
+        video.play();
+innerHTML = new Date().getFullYear();
+
+if (!String.prototype.trim) {
+    console.log('trim can not use!');
+    String.prototype.trim = function () {
+        return this.replace
+
+toUpperCase
+toLowerCase
+URLSearchParams
+try
+catch
+json
+await
+async
+fetch
+const
+getBoundingClientRect().height;
+preventDefault();
+currentTarget.getAttribute("href")
+slice(1);
+classList.contains
+
+offsetTop
+window.addEventListener
+('scroll', 
+function(){
+ageYOffset;
+
+
+    placeholder
+    autocomplete
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    <!-- styles -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+h1 h2 h3 h4 p
+
+<nav>
+<div class=
+        <ul>
+          <li>
+<main>
+<div class="container">
+<span class
+button class
+id=
+   <script src
+
+document.getElementById
+document.querySelector
+document.getElementsByClassName
+
+addEventListener('click', function () {
+document.body.style.backgroundColor
+    return Math.floor( Math.random()
+
+
+document.querySelectorAll
+forEach(function() {
+    //console.log(
+item.classList.remove
+lassList.toggle('show-text
+console.log( e.currentTarget.parentElement.parentElement
+question.classList.toggle('show-text');
+<article
+<span class="plus-icon"><i class="far fa-plus-square">>
+<span class="minus-icon"><i class="far fa-minus-square">
+
+window.addEventListener("DOMContentLoaded", function () {
+console.log(e.currentTarget.dataset);
+    const = menu.filter(function {
+.join("");
+  innerHTML
+
+
+ scroll-behavior: smooth;
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family:
+  background:
+  color:
+  line-height:
+  font-size
+
+  list-style-type: none;
+  text-decoration: none;
+img:not() {
+  width
+  display: block;
+
+  letter-spacing: 
+  text-transform: capitalize;
+  line-height:
+  margin-bottom:
+  font-family:
+  font-size: 3rem;
+  margin-bottom: 1.25rem;
+  color:
+@media screen and (min-width) {
+    line-height: 1;
+
+ text-transform: uppercase;
+  background: transparent;
+  padding
+  letter-spacing
+  display: inline-block;
+  transition
+  font-size:
+  border: solid 
+  cursor: pointer;
+  box-shadow:rgba
+  border-radius: 
+
+  background:
+
+  border-color:
+  border-radius:
+  padding:
+
+over {
+  padding-bottom
+
+  width:
+  margin: 0 auto;
+  max-width:
+}
+@media screen and (min-width: 
+  min-height: 
+  display: grid;
+  place-items: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: 
+  box-shadow: 
+
+  height: auto !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-color: transparent;
+  transition: 
+  overflow: hidden;
+  transition:
+  text-transform: capitalize;
+  letter-spacing:
+  display: block;
+  transition: 
+  font-weight: bold;
+   width: 
+    max-width: 
+    margin:
+    display: flex;
+    align-items: 
+    justify-content: space-between;
+    display: none;
+    background: transparent;
+
+    text-transform: capitalize;
+    letter-spacing: 
+    display: block;
+    transition:
+    margin: 
+    font-weight: bold;
+    padding: 0;
+
+
+}
+
+<!-- -->
+<!DOCTYPE>
+<a>
+<abbr>
+<acronym>
+<address>
+<applet>
+<area>
+<b>
+<base>
+<basefont>
+<bdo>
+<bgsound>
+<big>
+<blink>
+<blockquote>
+<body>
+<br>
+<button>
+<caption>
+<center>
+<cite>
+<code>
+<col>
+<colgroup>
+<comment>
+<dd>
+<del>
+<dfn>
+<dir>
+<div>
+<dl>
+<dt>
+<em>
+<embed>
+<fieldset>
+<font>
+<form>
+<frame>
+<frameset>
+<h1>Å`<h6>
+<head>
+<hr>
+<html>
+<i>
+<iframe>
+<img>
+<input>
+<ins>
+<isindex>
+<kbd>
+<label>
+<legend>
+<li>
+<link>
+<listing>
+<map>
+<marquee>
+<menu>
+<meta>
+<nobr>
+<noembed>
+<noframes>
+<noscript>
+<object>
+<ol>
+<optgroup>
+<option>
+<p>
+<param>
+<plaintext>
+<pre>
+<q>
+<rb>
+<rp>
+<rt>
+<ruby>
+<s>
+<samp>
+<script>
+<select>
+<small>
+<span>
+<strike>
+<strong>
+<style>
+<sub>
+<sup>
+<table>
+<tbody>
+<td>
+<textarea>
+<tfoot>
+<th>
+<thead>
+<title>
+<tr>
+<tt>
+<u>
+<ul>
+<var>
+<wbr>
+<xmp>
+
+kground
+background-attachment
+background-color
+background-image
+background-position
+background-repeat
+border
+border-bottom
+border-bottom-color
+border-bottom-style
+border-bottom-width
+border-collapse
+border-color
+border-left
+border-left-color
+border-left-style
+border-left-width
+border-right
+border-right-color
+border-right-style
+border-right-width
+border-spacing
+border-style
+border-top
+border-top-color
+border-top-style
+border-top-width
+border-width
+bottom
+caption-side
+clear
+clip
+color
+content
+counter-increment
+counter-reset
+cursor
+direction
+display
+empty-cells
+float
+font
+font-family
+font-size
+font-style
+font-variant
+font-weight
+height
+left
+letter-spacing
+line-height
+list-style
+list-style-image
+list-style-position
+list-style-type
+margin
+margin-bottom
+margin-left
+margin-right
+margin-top
+max-height
+max-width
+min-height
+min-width
+orphans
+outline
+outline-color
+outline-style
+outline-width
+overflow
+padding
+padding-bottom
+padding-left
+padding-right
+padding-top
+page-break-after
+page-break-before
+page-break-inside
+position
+quotes
+right
+table-layout
+text-align
+text-decoration
+text-indent
+text-transform
+top
+unicode-bidi
+vertical-align
+visibility
+white-space
+windows
+width
+word-spacing
+z-index
+
+
+
+header {
+  min-height: 
+  background: linear-gradient
+    url center/cover no-repeat;
+
+.banner {
+  place-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 
+  margin-bottom: 
+  position: fixed;
+  bottom: 
+  right: 3rem;
+  background: 
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  border-radius: 
+  animation: bounce 2s ease-in-out infinite;
+
+  visibility: hidden;
+  z-index: -100;
+
+@keyframes bounce {
+    transform: scale(1);
