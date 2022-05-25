@@ -49,6 +49,12 @@ catch
 json
 await
 async
+Promise
+resolve
+reject
+then
+throw
+
 fetch
 const
 getBoundingClientRect().height;

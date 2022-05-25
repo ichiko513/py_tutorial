@@ -356,7 +356,7 @@ if __name__=='__main__':
     typing = mytype (filepath='')
     print( 'typing words:',len(typing.originalwords) )
 
-    count = typing.choicewords(lmin=2, lmax=99, count=100)
+    count = typing.choicewords(lmin=2, lmax=99, count=200)
     print( 'typing words:', count )
 
     #print( typing.playwords )

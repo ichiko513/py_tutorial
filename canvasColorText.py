@@ -25,8 +25,10 @@ class canvasColorText():
         x1,y1,x2,y2 = self.bbox()
         return (x1+x2)//2, (y1+y2)//2
     def bbox(self):
-        x1,y1,_,_ = self.canvas.bbox(self.ids[0]['id'])
-        _,_,x2,y2 = self.canvas.bbox(self.ids[len(self.ids)-1]['id'])
+        x1,y1,x2,y2 = 0,0,0,0
+        if len(self.ids):
+            x1,y1,_,_ = self.canvas.bbox(self.ids[0]['id'])
+            _,_,x2,y2 = self.canvas.bbox(self.ids[len(self.ids)-1]['id'])
         return x1,y1,x2,y2
     def moveto(self, x,y):
         x1,y1 = self.getpos()
@@ -47,20 +49,31 @@ class canvasColorText():
     def setfont(self, font : tkFont.Font ):
         self.font = font.copy()
         text = self.gettext()
-        for i, c, param in zip( range(len(text)), text, self.ids):
-            self.canvas.itemconfigure(param['id'], font=self.font)
-            self.ids[i]['width'], self.ids[i]['height'] = \
-                self.font.measure(c, displayof=self.canvas), \
-                self.font.metrics("linespace", displayof=self.canvas)
-        x,y = self.getpos()
-        self.reposition_canvastext()
-        self.moveto(x,y)
+        x0,y0=0,0
+        if len(text):
+            for i, c, param in zip( range(len(text)), text, self.ids):
+                self.canvas.itemconfigure(param['id'], font=self.font)
+                self.ids[i]['width'], self.ids[i]['height'] = \
+                    self.font.measure(c ), \
+                    self.font.metrics("linespace")
+                id = self.ids[i]['id']
+                xy = self.canvas.coords(id)
+                if i==0:
+                    x0,y0 =  xy[0], xy[1]
+                mx, my = x0 - xy[0], y0 - xy[1]
+                self.canvas.move(id, mx, my) #same coordinates of all characters
+            x,y = self.getpos()
+            self.reposition_canvastext()
+            self.moveto(x,y) # coordinates shift of all characters
+
     def reposition_canvastext(self):
-        xx = 0;
-        for i, param in enumerate(self.ids):
-            if i > 0:
+        if len(self.ids):
+            xx = - self.ids[0]['width'] / 2;
+            for param in self.ids:
+                xx += param['width'] / 2;
                 self.canvas.move( param['id'], xx, 0 )
-            xx += param['width']
+                xx += param['width'] / 2;
+
 
 
 
@@ -77,11 +90,15 @@ if __name__=='__main__':
             self.canvasText = canvasColorText(self.canvas)
             # self.canvasText.setcolor(['green'])
 
-            self.canvasText.create_text('hoge')
+            # self.canvasText.create_text('hoge')
+            self.canvasText.create_text('[javascript]')
             self.canvasText.setcolor(('red','Yellow','green','blue','red'))
             font = tkFont.Font(family="times", size=30, weight="bold", slant='italic')
             self.canvasText.setfont(font)
             self.mvcounter = 0.05
+
+            # id = self.canvas.create_text(200,50, text='[javascript]')
+            # self.canvas.itemconfigure(id, font=font)
 
         def movetext(self):
             self.canvas['bg'] = 'white'
@@ -90,7 +107,7 @@ if __name__=='__main__':
             x = cy + r * math.cos( math.radians(self.mvcounter))
 
             self.canvasText.moveto(x,y)
-            self.after(10, self.movetext)
+            # self.after(10, self.movetext)
             self.mvcounter = (self.mvcounter + 1) % 360
 
     app = testclass()

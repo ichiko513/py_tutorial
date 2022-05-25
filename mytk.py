@@ -30,7 +30,7 @@ class playWord():
        
     def keycheck(self, key):
         # return status, pos
-        if self.word[ self.pos ] == key:
+        if self.word[ self.pos ].lower() == key.lower():
             self.pos += 1
             if self.pos < len(self.word):
                 return playStatus.keyok, self.pos
@@ -43,7 +43,7 @@ class playList():
     
     def __init__(self) -> None:
         self.wlist  = []
-        self.finish = {}
+        self.wfinish = {}
         self.pos= 0 #進行状況 何番目のwordか
         
     def loaddata(self, filepath='', **keys ):
@@ -52,15 +52,15 @@ class playList():
         loaddata = mytype(filepath=filepath)
         loaddata.choicewords(**keys)
         self.wlist = loaddata.playwords
-        self.finish = {}
+        self.wfinish = {}
         self.pos= 0 #進行状況 何番目のwordか
 
     def getword(self):
         return self.wlist[self.pos]
-    def finish(self, playword):
+    def finish(self, playWordData):
         lword = self.getword().lower() 
-        if lword not in self.wlist:
-            self.finish[lword] = playword
+        if lword not in self.wfinish:
+            self.wfinish[lword] = playWordData
         else:
             pass
         self.pos = (self.pos + 1) % len(self.wlist)
@@ -72,6 +72,8 @@ class mytk(Tk.Tk):
         self.status = playStatus.wait
         self.playList = playList()
         self.playList.loaddata(filepath, **keys)
+        self.playWord = None
+        self.ready = 0
 
         # self.geometry('640x480')
         self.protocol('WM_DELETE_WINDOW', self.onclose)
@@ -86,20 +88,13 @@ class mytk(Tk.Tk):
 
         # word = self.playList.getword()
         # word = self.playList.getword()
-        text = 'abcdef'
-        text = [ i for i in text ]
-        ids = {}
-        for c in text:
-            id = self.canvas.create_text(100, 20, text=c);
-            x1,y1, x2,y2 = self.canvas.bbox(id)
-            ids[id] = (x2-x1+1,y2-y1+1)
+        self.canvasText = canvasColorText(self.canvas)
+        self.canvasText.setfont( tkFont.Font(size=30, weight="bold", \
+        # self.canvasText.setfont( tkFont.Font(family="times", size=30, weight="bold", \
+            #  slant='italic') );
+            ));
 
-        x = 100
-        y = 50
-        for id, (w,h) in ids.items():
-            self.canvas.move( id, x , y )
-            self.canvas.itemconfigure(id, fill='red')
-            x += w
+        self.canvasText.create_text('Hitkey [Space] or [Enter] to Start!!', 320,140)
 
         # fontname = self.canvas.itemcget(ids[0], 'font')
         # font = tkFont.nametofont(fontname)
@@ -119,14 +114,50 @@ class mytk(Tk.Tk):
         super().mainloop()
         
 
-    def ondraw(self):
+    def onplay(self):
+        if self.status == playStatus.ready:
+            self.canvasText.create_text(str(self.ready), 320,140)
+            self.ready -= 1
+            if self.ready >= 0:
+                self.after( 1000, self.onplay )
+            else:
+                self.status = playStatus.play
+                self.canvasText.create_text('')
+
+        if self.status == playStatus.play:
+            self.playWord = playWord( self.playList.getword() )
+            self.canvasText.create_text( self.playWord.word, 320,140 )
+            pass
         pass
+
     def onkeypress(self, key):
-        print(key)
-        if key.char == '\x1b': # [esc]
-            pass
-        if key.char == '\r' or key.char == ' ': # [Enter] or [space]
-            pass
+        if self.status == playStatus.wait:
+            if key.char == '\r' or key.char == ' ': # [Enter] or [space]
+                self.status = playStatus.ready
+                self.ready = 3
+                self.onplay()
+        elif self.status == playStatus.ready:
+            if key.char == '\x1b': # [esc]
+                # 画面リセット
+                self.canvasText.create_text('')
+                self.status = playStatus.wait
+        elif self.status == playStatus.play:
+            # print(key)
+            if key.char == '\x1b': # [esc]
+                pass
+            else:
+                ret, _ = self.playWord.keycheck(key.char)
+                if ret == playStatus.keyok or  ret == playStatus.keymiss:
+                    cols = [ 'green' if i < self.playWord.pos else 'blue' for i in range(len(self.playWord.word))]
+                    cols[self.playWord.pos] = 'red'
+                    self.canvasText.setcolor(cols)
+                    pass
+                elif ret == playStatus.keyfinish:
+                    self.playList.finish(self.playWord)
+                    self.onplay()
+
+        elif self.status == playStatus.finish:
+            self.status = playStatus.wait
 
 
 if __name__=='__main__':
